@@ -150,7 +150,7 @@ class VideoCompress {
     bool deleteOrigin = false,
     int startTime,
     int duration,
-    bool includeAudio,
+    bool includeAudio = true,
     int frameRate,
   }) async {
     assert(path != null);
