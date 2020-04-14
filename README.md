@@ -1,3 +1,13 @@
+# goals of this fork
+
+To make iOS and Android more campitable in terms of compression of video.
+
+For example: Making sure the quality presets have the same output in terms of aspect ratio and resolution.
+
+Make sure videos compressed on iOS can be played without error on Android and vice versa
+
+Ultimate goal is to find the balance of encoding speed, output file size and optimal output video quality.
+
 # video_compress
 
 Compress videos, remove audio, manipulate thumbnails, and make your video compatible with all platforms through this lightweight and efficient library.
