@@ -61,26 +61,26 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                 val out = SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(Date())
                 val destPath: String = tempDir + File.separator + "VID_" + out + ".mp4"
 
-                var strategy: TrackStrategy = DefaultVideoStrategy.atMost(340).build();
+                var strategy: TrackStrategy = DefaultVideoStrategy.atMost(540).build();
 
                 when (quality) {
 
                    0 -> {
-                      strategy = DefaultVideoStrategy.atMost(720).build()
+                      strategy = DefaultVideoStrategy.atMost(540).build()
                    }
 
                     1 -> {
-                        strategy = DefaultVideoStrategy.atMost(340).build()
+                        strategy = DefaultVideoStrategy.atMost(480).build()
                     }
                     2 -> {
-                        strategy = DefaultVideoStrategy.atMost(640).build()
+                        strategy = DefaultVideoStrategy.atMost(720).build()
                     }
                     3 -> {
 
                         assert(value = frameRate != null)
                         strategy = DefaultVideoStrategy.Builder()
                                 .keyFrameInterval(3f)
-                                .bitRate(1280 * 720 * 4.toLong())
+                                .bitRate(1920 * 1080 * 4.toLong())
                                 .frameRate(frameRate!!) // will be capped to the input frameRate
                                 .build()
                     }
@@ -95,6 +95,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                                 channel.invokeMethod("updateProgress", progress)
                             }
                             override fun onTranscodeCompleted(successCode: Int) {
+                                channel.invokeMethod("updateProgress", 1.00)
                                 val json = Utility(channelName).getMediaInfoJson(context, destPath)
                                 json.put("isCancel", false)
                                 result.success(json.toString())
