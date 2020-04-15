@@ -73,8 +73,8 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                         strategy = DefaultVideoStrategy.atMost(480).build()
                     }
                     2 -> {
-                        strategy = DefaultVideoStrategy.exact(480, 854)
-                            .bitRate(2L * 850 * 850)
+                        strategy = DefaultVideoStrategy.exact(720, 1280)
+                            .bitRate(2L * 800 * 800)
                             .frameRate(30)
                             .keyFrameInterval(3F)
                             .build();
@@ -85,7 +85,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                         assert(value = frameRate != null)
                         strategy = DefaultVideoStrategy.Builder()
                                 .keyFrameInterval(3f)
-                                .bitRate(1000 * 1000 * 4.toLong())
+                                .bitRate(1000 * 1000 * 2.toLong())
                                 .frameRate(frameRate!!) // will be capped to the input frameRate
                                 .build()
                     }
