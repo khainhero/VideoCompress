@@ -70,7 +70,12 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                    }
 
                     1 -> {
-                        strategy = DefaultVideoStrategy.atMost(480).build()
+                        DefaultVideoStrategy.exact(360, 480)
+                            .bitRate(500L * 1000)
+                            .frameRate(frameRate!!)
+                            .keyFrameInterval(3F)
+                            .build();
+                        //strategy = DefaultVideoStrategy.atMost(480).build()
                     }
                     2 -> {
                         strategy = DefaultVideoStrategy.exact(720, 1280)
