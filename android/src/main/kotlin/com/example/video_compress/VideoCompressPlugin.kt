@@ -54,7 +54,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                 val deleteOrigin = call.argument<Boolean>("deleteOrigin")!!
                 val startTime = call.argument<Int>("startTime")
                 val duration = call.argument<Int>("duration")
-                val bitRateCalculation = duration!! * 350000;
+                val bitRateCalculation = duration!! * 100000;
                 val includeAudio = call.argument<Boolean>("includeAudio")
                 val frameRate = if (call.argument<Int>("frameRate")==null) 30 else call.argument<Int>("frameRate")
                 
@@ -76,6 +76,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                     2 -> {
                         strategy = DefaultVideoStrategy.exact(720, 1280)
                             .bitRate(bitRateCalculation.toLong())
+                            .mimeType("video/hevc")
                             .frameRate(frameRate!!)
                             .keyFrameInterval(3F)
                             .build();
