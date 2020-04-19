@@ -56,7 +56,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                 val duration = call.argument<Int>("duration")
                 val includeAudio = call.argument<Boolean>("includeAudio")
                 val frameRate = if (call.argument<Int>("frameRate")==null) 30 else call.argument<Int>("frameRate")
-                val bitRateCalculation = 0.07F * (720*1280*1F*frameRate!!);
+                val bitRateCalculation = 0.07F * (360*640*2F*frameRate!!);
                 val tempDir: String = this.context.getExternalFilesDir("video_compress")!!.absolutePath
                 val out = SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(Date())
                 val destPath: String = tempDir + File.separator + "VID_" + out + ".mp4"
@@ -73,7 +73,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                         strategy = DefaultVideoStrategy.atMost(480).build()
                     }
                     2 -> {
-                        strategy = DefaultVideoStrategy.exact(720, 1280)
+                        strategy = DefaultVideoStrategy.exact(360, 640)
                             .bitRate(bitRateCalculation.toLong())
                             .frameRate(frameRate!!)
                             .keyFrameInterval(3F)
