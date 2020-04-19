@@ -42,7 +42,6 @@ class Utility(private val channelName: String) {
         val author = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) ?: ""
         val widthStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
         val heightStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
-        val frameRate = java.lang.Long.parseLong(getFrameRate)
         val duration = java.lang.Long.parseLong(durationStr)
         var width = java.lang.Long.parseLong(widthStr)
         var height = java.lang.Long.parseLong(heightStr)
@@ -66,7 +65,7 @@ class Utility(private val channelName: String) {
         json.put("path", path)
         json.put("title", title)
         json.put("author", author)
-        json.put("frameRate", frameRate)
+        json.put("frameRate", getFrameRate.toIntOrNull())
         json.put("width", width)
         json.put("height", height)
         json.put("duration", duration)
