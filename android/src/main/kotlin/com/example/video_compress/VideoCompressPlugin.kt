@@ -60,7 +60,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                 
                 val tempDir: String = this.context.getExternalFilesDir("video_compress")!!.absolutePath
                 val out = SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(Date())
-                val destPath: String = tempDir + File.separator + "VID_" + out + ".mp4"
+                val destPath: String = tempDir + File.separator + "VID_" + out + ".hevc"
 
                 var strategy: TrackStrategy = DefaultVideoStrategy.atMost(540).build();
 
@@ -76,7 +76,7 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                     2 -> {
                         strategy = DefaultVideoStrategy.exact(720, 1280)
                             .bitRate(bitRateCalculation.toLong())
-            
+                            .mimeType("video/hevc")
                             .frameRate(frameRate!!)
                             .keyFrameInterval(3F)
                             .build();
