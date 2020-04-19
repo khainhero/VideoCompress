@@ -39,7 +39,7 @@ class MediaInfo {
     author = json['author'];
     width = json['width'];
     height = json['height'];
-    frameRate = json['frameRate'];
+    frameRate = json['frameRate']??25;
     orientation = json['orientation'];
     filesize = json['filesize'];
     duration = double.tryParse('${json['duration']}');
