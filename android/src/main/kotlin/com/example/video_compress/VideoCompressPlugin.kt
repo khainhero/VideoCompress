@@ -69,8 +69,8 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                    }
 
                     1 -> {
-                        val bitRateCalculation = 0.07F * (640*360*2F*frameRate!!)
-                        strategy = DefaultVideoStrategy.atMost(360)
+                        val bitRateCalculation = 0.07F * (600*480*2F*frameRate!!)
+                        strategy = DefaultVideoStrategy.atMost(480)
                             .frameRate(frameRate!!)
                             .bitRate(bitRateCalculation.toLong())
                             .build()
