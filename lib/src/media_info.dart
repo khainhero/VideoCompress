@@ -7,14 +7,11 @@ class MediaInfo {
   String author;
   int width;
   int height;
-  /// [Android] API level 23
-  int frameRate;
   /// [Android] API level 17
   int orientation;
-
   /// bytes
   int filesize; // filesize
-  /// microsecond
+  /// milliseconds
   double duration;
   bool isCancel;
   File file;
@@ -25,7 +22,6 @@ class MediaInfo {
     this.author,
     this.width,
     this.height,
-    this.frameRate,
     this.orientation,
     this.filesize,
     this.duration,
@@ -39,7 +35,6 @@ class MediaInfo {
     author = json['author'];
     width = json['width'];
     height = json['height'];
-    frameRate = json['frameRate']??25;
     orientation = json['orientation'];
     filesize = json['filesize'];
     duration = double.tryParse('${json['duration']}');
@@ -54,7 +49,6 @@ class MediaInfo {
     data['author'] = this.author;
     data['width'] = this.width;
     data['height'] = this.height;
-    data['frameRate'] = this.frameRate;
     if (this.orientation != null) {
       data['orientation'] = this.orientation;
     }
