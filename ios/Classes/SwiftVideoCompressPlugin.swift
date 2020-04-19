@@ -105,7 +105,6 @@ public class SwiftVideoCompressPlugin: NSObject, FlutterPlugin {
         
         let duration = asset.duration.seconds * 1000
         let filesize = track.totalSampleDataLength
-        let frameRate = track.nominalFrameRate
         
         let size = track.naturalSize.applying(track.preferredTransform)
         
@@ -120,7 +119,6 @@ public class SwiftVideoCompressPlugin: NSObject, FlutterPlugin {
             "height":height,
             "duration":duration,
             "filesize":filesize,
-            "frameRate": frameRate,
             "orientation":orientation
             ] as [String : Any?]
         return dictionary
