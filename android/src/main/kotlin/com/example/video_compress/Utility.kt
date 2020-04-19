@@ -36,7 +36,6 @@ class Utility(private val channelName: String) {
         val retriever = MediaMetadataRetriever()
 
         retriever.setDataSource(context, Uri.fromFile(file))
-        val getFrameRate = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_CAPTURE_FRAMERATE)
         val durationStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
         val title = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE) ?: ""
         val author = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_AUTHOR) ?: ""
@@ -65,7 +64,6 @@ class Utility(private val channelName: String) {
         json.put("path", path)
         json.put("title", title)
         json.put("author", author)
-        json.put("frameRate", getFrameRate.toIntOrNull())
         json.put("width", width)
         json.put("height", height)
         json.put("duration", duration)
