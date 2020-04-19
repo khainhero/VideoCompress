@@ -56,7 +56,6 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                 val duration = call.argument<Int>("duration")
                 val includeAudio = call.argument<Boolean>("includeAudio")
                 val frameRate = if (call.argument<Int>("frameRate")==null) 30 else call.argument<Int>("frameRate")
-                val bitRateCalculation = 0.07F * (900*640*2F*frameRate!!);
                 val tempDir: String = this.context.getExternalFilesDir("video_compress")!!.absolutePath
                 val out = SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(Date())
                 val destPath: String = tempDir + File.separator + "VID_" + out + ".mp4"
@@ -70,27 +69,37 @@ class VideoCompressPlugin private constructor(private val activity: Activity, pr
                    }
 
                     1 -> {
-                        strategy = DefaultVideoStrategy.atMost(480).build()
+                        val bitRateCalculation = 0.07F * (640*360*2F*frameRate!!)
+                        strategy = DefaultVideoStrategy.atMost(360)
+                            .frameRate(frameRate!!)
+                            .bitRate(bitRateCalculation.toLong())
+                            .build()
+                        //strategy = DefaultVideoStrategy.atMost(480).build()
                     }
                     2 -> {
+                        val bitRateCalculation = 0.07F * (600*540*2F*frameRate!!)
                         /*strategy = DefaultVideoStrategy.exact(360, 640)
                             .bitRate(bitRateCalculation.toLong())
                             .frameRate(frameRate!!)
                             .keyFrameInterval(3F)
                             .build() */
-                        strategy = DefaultVideoStrategy.atMost(640)
+                        strategy = DefaultVideoStrategy.atMost(540)
                             .frameRate(frameRate!!)
                             .bitRate(bitRateCalculation.toLong())
                             .build()
                     }
                     3 -> {
-
-                        assert(value = frameRate != null)
+                        val bitRateCalculation = 0.07F * (720 * 1280 * 2F*frameRate!!)
+                        strategy = DefaultVideoStrategy.atMost(720)
+                            .frameRate(frameRate!!)
+                            .bitRate(bitRateCalculation.toLong())
+                            .build()
+                        /*assert(value = frameRate != null)
                         strategy = DefaultVideoStrategy.Builder()
                                 .keyFrameInterval(3f)
                                 .bitRate(1000 * 1000 * 2.toLong())
                                 .frameRate(frameRate!!) // will be capped to the input frameRate
-                                .build()
+                                .build()*/
                     }
                 }
 
